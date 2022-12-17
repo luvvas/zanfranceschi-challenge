@@ -12,7 +12,7 @@ using zanfranceschi_challenge.Data;
 namespace zanfranceschichallenge.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221217043245_CreateClienteAndSaldo")]
+    [Migration("20221217051024_CreateClienteAndSaldo")]
     partial class CreateClienteAndSaldo
     {
         /// <inheritdoc />
@@ -31,17 +31,11 @@ namespace zanfranceschichallenge.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("SaldoId")
-                        .HasColumnType("uuid");
-
                     b.Property<string>("nome")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("SaldoId")
-                        .IsUnique();
 
                     b.ToTable("Clientes");
                 });
@@ -61,23 +55,6 @@ namespace zanfranceschichallenge.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Saldos");
-                });
-
-            modelBuilder.Entity("zanfranceschi_challenge.Models.Cliente", b =>
-                {
-                    b.HasOne("zanfranceschi_challenge.Models.Saldo", "Saldo")
-                        .WithOne("Cliente")
-                        .HasForeignKey("zanfranceschi_challenge.Models.Cliente", "SaldoId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Saldo");
-                });
-
-            modelBuilder.Entity("zanfranceschi_challenge.Models.Saldo", b =>
-                {
-                    b.Navigation("Cliente")
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
