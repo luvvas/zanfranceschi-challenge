@@ -7,11 +7,10 @@ using zanfranceschi_challenge.Models;
 namespace zanfranceschi_challenge.Controllers
 {
   [Route("[controller]")]
-  [ApiController]
-  public class ClienteController : ControllerBase
+  public class SaldoController : ControllerBase
   {
     private readonly DataContext _context;
-    public ClienteController(DataContext context)
+    public SaldoController(DataContext context)
     {
       _context = context;
     }
